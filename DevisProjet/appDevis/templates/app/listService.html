@@ -1,0 +1,24 @@
+{% extends 'app/base.html' %}
+
+
+{% block section %}
+<h1>La liste des Services</h1>
+<div class="row">
+   {% for service in services %}
+   <div class="card" style="width: 18rem;">
+   {% if service.image %}
+   <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.nom }}">
+   {% else %}
+   <h4 style="color:red;">Pas d'image ici</h4> 
+   {% endif %}
+    
+    <div class="card-body">
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+    </div>
+</div>
+    
+   {% endfor %}
+    
+</div>
+{% endblock %}

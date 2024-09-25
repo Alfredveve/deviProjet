@@ -1,0 +1,102 @@
+{% extends 'app/base.html' %}
+
+{% block section %}
+<div class="container px-5 my-5">
+    <form method="post" id="contactForm">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label" for="{{ form.service.id_for_label }}">Selectioner un services</label>
+            {{ form.service }}
+            {% if form.service.errors %}
+                <div class="invalid-feedback">{{ form.service.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="{{ form.pays.id_for_label }}">Selection un pays</label>
+            {{ form.pays }}
+            {% if form.pays.errors %}
+                <div class="invalid-feedback">{{ form.pays.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="{{ form.ville.id_for_label }}">Ville</label>
+            {{ form.ville }}
+            {% if form.ville.errors %}
+                <div class="invalid-feedback">{{ form.ville.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="{{ form.commune.id_for_label }}">Commune</label>
+            {{ form.commune }}
+            {% if form.commune.errors %}
+                <div class="invalid-feedback">{{ form.commune.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="{{ form.quartier.id_for_label }}">Quartier</label>
+            {{ form.quartier }}
+            {% if form.quartier.errors %}
+                <div class="invalid-feedback">{{ form.quartier.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="{{ form.nom_client.id_for_label }}">Nom Client</label>
+            {{ form.nom_client }}
+            {% if form.nom_client.errors %}
+                <div class="invalid-feedback">{{ form.nom_client.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="{{ form.email.id_for_label }}">Email Address</label>
+            {{ form.email }}
+            {% if form.email.errors %}
+                <div class="invalid-feedback">{{ form.email.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="{{ form.tel_whatsapp.id_for_label }}">Telephon Whatsapp</label>
+            <input type="text" id="{{ form.tel_whatsapp.id_for_label }}" name="{{ form.tel_whatsapp.html_name }}" class="form-control" placeholder="Telephon Whatsapp">
+            {% if form.tel_whatsapp.errors %}
+                <div class="invalid-feedback">{{ form.tel_whatsapp.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="{{ form.numero_devis.id_for_label }}">Numero Devis</label>
+            {{ form.numero_devis }}
+            {% if form.numero_devis.errors %}
+                <div class="invalid-feedback">{{ form.numero_devis.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="d-none" id="submitSuccessMessage">
+            <div class="text-center mb-3">
+                <div class="fw-bolder">Form submission successful!</div>
+                <p>To activate this form, sign up at</p>
+            </div>
+        </div>
+        <div class="d-none" id="submitErrorMessage">
+            <div class="text-center text-danger mb-3">Error sending message!</div>
+        </div>
+        <div class="d-grid">
+            <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button>
+        </div>
+    </form>
+    {% if message %}
+        <div class="alert alert-info mt-3">{{ message }}</div>
+    {% endif %}
+</div>
+
+<!-- Include intl-tel-input CSS and JS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var input = document.querySelector("#{{ form.tel_whatsapp.id_for_label }}");
+        var iti = window.intlTelInput(input, {
+            preferredCountries: ["us", "gb", "fr"],
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js"
+        });
+    });
+</script>
+
+{% endblock %}
