@@ -2,6 +2,7 @@ from django.db import models
 from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
 
+
 class Service(models.Model):
     nom = models.CharField(max_length=100)
     description = models.TextField()
@@ -10,6 +11,7 @@ class Service(models.Model):
 
     def __str__(self):
         return self.nom
+
 
 class Devis(models.Model):
     service = models.ForeignKey('Service', on_delete=models.CASCADE)
